@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\Data",
-    "\\Hubs",
-    "\\wwwroot"
+    "\\Hubs"
   ],
-  "SelectedNode": "\\Hubs\\ChatHub.cs",
+  "SelectedNode": "\\Data\\ChatDbContextFactory.cs",
   "PreviewInSolutionExplorer": false
 }

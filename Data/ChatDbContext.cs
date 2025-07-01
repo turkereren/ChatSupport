@@ -10,10 +10,10 @@ namespace ChatSupport.Data
         public ChatDbContext(DbContextOptions<ChatDbContext> options)
             : base(options) { }
 
-        // ––– Tasarým-zamaný veya hiç Configure edilmemiþse burasý devreye girer
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Eðer DI’den gelen optionsBuilder boþsa veya connection string boþsa
+            
             if (!optionsBuilder.IsConfigured ||
                 optionsBuilder.Options.Extensions
                     .OfType<Microsoft.EntityFrameworkCore.Infrastructure.RelationalOptionsExtension>()

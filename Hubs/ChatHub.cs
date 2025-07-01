@@ -82,7 +82,7 @@ namespace ChatSupport.Hubs
             _db.ChatSessions.Remove(session);
             await _db.SaveChangesAsync();
 
-            // Admin listelerini yenilesin
+            
             await Clients.All.SendAsync("ChatEnded");
             return true;
         }

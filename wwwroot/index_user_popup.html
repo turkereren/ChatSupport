@@ -119,7 +119,7 @@
             <button class="close-btn" id="closeChatBtn">✕</button>
         </div>
 
-        <!-- 1) Oyun kampanya afişi -->
+       
         <div id="gameBanner">
             <img src="/images/banner.png" alt="Oyun Kampanyaları" />
         </div>
@@ -166,14 +166,14 @@
                 await connection.start();
             }
 
-            // 2) Panel göster, karşılama + kampanya mesajları
+            // Welcome message
             initConnection().then(() => {
                 addMessage("Sistem", "Merhaba, size nasıl yardımcı olabiliriz?");
                 addMessage("Sistem", "Kampanyalar: League Of Legends, CS2, Arena Breakout: Infinite, Metin 2");
                 usernameInput.focus();
             });
 
-            // Kullanıcı adı girilince oturum başlat
+            // Start session when username entered
             usernameInput.addEventListener("keydown", async e => {
                 if (e.key === "Enter" && !isStarted) {
                     e.preventDefault();
