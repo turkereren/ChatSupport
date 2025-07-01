@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\images\\banner.png",
+      "PackagePath": "staticwebassets\\images\\banner.png"
+    },
+    {
+      "Id": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html",
+      "PackagePath": "staticwebassets\\index_admin.html"
+    },
+    {
+      "Id": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html",
+      "PackagePath": "staticwebassets\\index_user_popup.html"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ChatSupport.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ChatSupport.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.ChatSupport.props",
+      "PackagePath": "build\\ChatSupport.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.ChatSupport.props",
+      "PackagePath": "buildMultiTargeting\\ChatSupport.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.ChatSupport.props",
+      "PackagePath": "buildTransitive\\ChatSupport.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

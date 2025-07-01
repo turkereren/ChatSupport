@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Sadece Pomelo EF Core MySQL sağlayıcısı ekleyin,
+         transitif olarak EF Core runtime (>=8.0.0) gelecektir -->
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.0" />
+
+    <!-- EF Core araçları (migrations vb.) -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+
+    <!-- Swagger UI (opsiyonel) -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+	 
+
+  </ItemGroup>
+
+</Project>

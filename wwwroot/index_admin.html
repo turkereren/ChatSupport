@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Destek Paneli</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 350px; /* ↑ 300 → 350 genişletildi */
+            background: #2c3e50;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+        }
+
+            #sidebar h2 {
+                padding: 10px 12px;
+                background: #34495e;
+                font-size: 15px;
+            }
+
+        .chat-list {
+            flex: 1;
+            padding: 8px;
+            /* overflow-y:auto;  → kaldırıldı */
+        }
+
+        .chat-item {
+            background: #3b5366;
+            margin: 6px 0;
+            padding: 6px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 14px; /* biraz küçültüldü */
+        }
+
+            .chat-item:hover {
+                background: #4a6b85
+            }
+
+            .chat-item span {
+                flex: 1;
+                color: #ecf0f1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .claim-btn, .end-btn {
+            background: #27ae60;
+            border: none;
+            color: #fff;
+            padding: 4px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+
+            .claim-btn:hover {
+                background: #219150
+            }
+
+        .end-btn {
+            background: #c0392b;
+        }
+
+            .end-btn:hover {
+                background: #992d22
+            }
+
+        /* Main panel */
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chatWindow {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            background: #ecf0f1;
+            font-size: 14px;
+        }
+
+        #chatInput {
+            display: flex;
+            padding: 10px;
+            background: #bdc3c7;
+        }
+
+            #chatInput input {
+                flex: 1;
+                padding: 6px 8px;
+                border: 1px solid #95a5a6;
+                border-radius: 4px;
+                margin-right: 8px;
+                font-size: 14px;
+            }
+
+            #chatInput button {
+                padding: 6px 12px;
+                background: #2980b9;
+                border: none;
+                border-radius: 4px;
+                color: #fff;
+                cursor: pointer;
+                font-size: 14px;
+            }
+
+                #chatInput button:hover {
+                    background: #1f6a98
+                }
+
+        .active {
+            background: #1abc9c !important
+        }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>Bekleyen Sohbetler</h2>
+        <div id="pendingList" class="chat-list"></div>
+
+        <h2>Benim Sohbetlerim</h2>
+        <div id="myList" class="chat-list"></div>
+    </div>
+
+    <div id="main">
+        <div id="chatWindow"></div>
+        <div id="chatInput">
+            <input type="text" id="adminMessage" placeholder="Mesajınızı yazın..." />
+            <button id="adminSendBtn">Gönder</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const pendingList = document.getElementById('pendingList');
+            const myList = document.getElementById('myList');
+            const chatWindow = document.getElementById('chatWindow');
+            const adminInput = document.getElementById('adminMessage');
+            const adminSendBtn = document.getElementById('adminSendBtn');
+
+            let connection, activeChatId = null;
+
+            function addWindowMessage(sender, text) {
+                const d = document.createElement('div');
+                d.textContent = `${sender}: ${text}`;
+                chatWindow.appendChild(d);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+            function clearWindow() {
+                chatWindow.innerHTML = "";
+            }
+
+            function renderPending(chats) {
+                pendingList.innerHTML = "";
+                chats.forEach(s => {
+                    const item = document.createElement('div');
+                    item.className = 'chat-item';
+                    const lbl = document.createElement('span');
+                    lbl.textContent = `${s.chatId} (${s.userName})`;
+                    const btn = document.createElement('button');
+                    btn.className = 'claim-btn';
+                    btn.textContent = 'Claim';
+                    btn.onclick = async e => {
+                        e.stopPropagation();
+                        const ok = await connection.invoke('ClaimChat', s.chatId);
+                        if (ok) {
+                            await loadAllLists();
+                            openChat(s.chatId);
+                        }
+                    };
+                    item.append(lbl, btn);
+                    pendingList.appendChild(item);
+                });
+            }
+
+            function renderMy(chats) {
+                myList.innerHTML = "";
+                chats.forEach(s => {
+                    const item = document.createElement('div');
+                    item.className = 'chat-item';
+                    const lbl = document.createElement('span');
+                    lbl.textContent = `${s.chatId} (${s.userName})`;
+                    const endBtn = document.createElement('button');
+                    endBtn.className = 'end-btn';
+                    endBtn.textContent = 'Sohbeti Bitir';
+                    endBtn.onclick = async e => {
+                        e.stopPropagation();
+                        await connection.invoke('EndChat', s.chatId);
+                        await loadAllLists();
+                        if (activeChatId === s.chatId) {
+                            clearWindow();
+                            activeChatId = null;
+                        }
+                    };
+                    item.append(lbl, endBtn);
+                    item.onclick = () => openChat(s.chatId);
+                    if (s.chatId === activeChatId) item.classList.add('active');
+                    myList.appendChild(item);
+                });
+            }
+
+            async function loadAllLists() {
+                const pending = await connection.invoke('GetOpenChats');
+                renderPending(pending);
+                const mine = await connection.invoke('GetMyChats');
+                renderMy(mine);
+            }
+
+            async function openChat(chatId) {
+                activeChatId = chatId;
+                clearWindow();
+                const history = await connection.invoke('GetChatHistory', chatId);
+                history.forEach(m => addWindowMessage(m.sender, m.content));
+                renderMy(await connection.invoke('GetMyChats'));
+            }
+
+            async function sendAdmin() {
+                if (!activeChatId) return;
+                const txt = adminInput.value.trim();
+                if (!txt) return;
+                await connection.invoke('SendMessage', activeChatId, 'Destek', txt);
+                adminInput.value = "";
+            }
+
+            async function init() {
+                connection = new signalR.HubConnectionBuilder()
+                    .withUrl('/chatHub')
+                    .build();
+
+                connection.on('ReceiveMessage', (cid, sender, content) => {
+                    if (cid === activeChatId) addWindowMessage(sender, content);
+                });
+                connection.on('NewChatCreated', loadAllLists);
+
+                await connection.start();
+                await loadAllLists();
+            }
+
+            adminSendBtn.addEventListener('click', sendAdmin);
+            adminInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') { e.preventDefault(); sendAdmin(); }
+            });
+
+            init();
+        });
+    </script>
+</body>
+</html>

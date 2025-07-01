@@ -1,0 +1,805 @@
+{
+  "Version": 1,
+  "Hash": "SfH0wqneKSovUgqLidmWLWzSJg6UiZxaoJoI9Jw8ajA=",
+  "Source": "ChatSupport",
+  "BasePath": "_content/ChatSupport",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ChatSupport\\wwwroot",
+      "Source": "ChatSupport",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\",
+      "BasePath": "_content/ChatSupport",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\0lwbhra8bi-3jt800skhq.gz",
+      "SourceId": "ChatSupport",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ChatSupport",
+      "RelativePath": "index_admin#[.{fingerprint=3jt800skhq}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "id4fnbb5aq",
+      "Integrity": "GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html"
+    },
+    {
+      "Identity": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\t7vn6dt7xa-8r7n6p8xpu.gz",
+      "SourceId": "ChatSupport",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ChatSupport",
+      "RelativePath": "index_user_popup#[.{fingerprint=8r7n6p8xpu}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "2tv7jtli38",
+      "Integrity": "Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html"
+    },
+    {
+      "Identity": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\images\\banner.png",
+      "SourceId": "ChatSupport",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\",
+      "BasePath": "_content/ChatSupport",
+      "RelativePath": "images/banner#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "h6m0agyhwk",
+      "Integrity": "SVpN3B1+vIZVsVYuCihlHqQcPGMakd9cylyyLE3gUEE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\banner.png"
+    },
+    {
+      "Identity": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html",
+      "SourceId": "ChatSupport",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\",
+      "BasePath": "_content/ChatSupport",
+      "RelativePath": "index_admin#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3jt800skhq",
+      "Integrity": "fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index_admin.html"
+    },
+    {
+      "Identity": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html",
+      "SourceId": "ChatSupport",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\",
+      "BasePath": "_content/ChatSupport",
+      "RelativePath": "index_user_popup#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8r7n6p8xpu",
+      "Integrity": "/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index_user_popup.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "images/banner.h6m0agyhwk.png",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\images\\banner.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2391829"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SVpN3B1+vIZVsVYuCihlHqQcPGMakd9cylyyLE3gUEE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "h6m0agyhwk"
+        },
+        {
+          "Name": "label",
+          "Value": "images/banner.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SVpN3B1+vIZVsVYuCihlHqQcPGMakd9cylyyLE3gUEE="
+        }
+      ]
+    },
+    {
+      "Route": "images/banner.png",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\images\\banner.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2391829"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SVpN3B1+vIZVsVYuCihlHqQcPGMakd9cylyyLE3gUEE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SVpN3B1+vIZVsVYuCihlHqQcPGMakd9cylyyLE3gUEE="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.3jt800skhq.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\0lwbhra8bi-3jt800skhq.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000461680517"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2165"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3jt800skhq"
+        },
+        {
+          "Name": "label",
+          "Value": "index_admin.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.3jt800skhq.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3jt800skhq"
+        },
+        {
+          "Name": "label",
+          "Value": "index_admin.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.3jt800skhq.html.gz",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\0lwbhra8bi-3jt800skhq.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3jt800skhq"
+        },
+        {
+          "Name": "label",
+          "Value": "index_admin.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\0lwbhra8bi-3jt800skhq.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000461680517"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2165"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_admin.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8819"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fwfij/J/7rlYDRGtbXxuLVGhLMzc4V98K34CsMsX2nE="
+        }
+      ]
+    },
+    {
+      "Route": "index_admin.html.gz",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\0lwbhra8bi-3jt800skhq.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2165"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 19:46:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-GskzH3Tzp9GaE9mBn4lyI077nSd2wsR79hSf3KAMzSk="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.8r7n6p8xpu.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\t7vn6dt7xa-8r7n6p8xpu.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000497512438"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2009"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8r7n6p8xpu"
+        },
+        {
+          "Name": "label",
+          "Value": "index_user_popup.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.8r7n6p8xpu.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6878"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8r7n6p8xpu"
+        },
+        {
+          "Name": "label",
+          "Value": "index_user_popup.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.8r7n6p8xpu.html.gz",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\t7vn6dt7xa-8r7n6p8xpu.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2009"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8r7n6p8xpu"
+        },
+        {
+          "Name": "label",
+          "Value": "index_user_popup.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\t7vn6dt7xa-8r7n6p8xpu.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000497512438"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2009"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.html",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\wwwroot\\index_user_popup.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6878"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-/O7b7QqypF/xASk0Dr3QZLPmuPBdifsgcw38Jdgng4w="
+        }
+      ]
+    },
+    {
+      "Route": "index_user_popup.html.gz",
+      "AssetFile": "C:\\Users\\Turker\\Desktop\\Projects\\ChatSupport\\obj\\Debug\\net9.0\\compressed\\t7vn6dt7xa-8r7n6p8xpu.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2009"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 01 Jul 2025 18:03:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ogy/4HZf9CWRqxi80g3dXdDORgp9u/DZJLX11xrIcwY="
+        }
+      ]
+    }
+  ]
+}
