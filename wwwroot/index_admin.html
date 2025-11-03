@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Destek Paneli</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background: #eef2f7;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: 360px;
+            background: #ffffff;
+            color: #111827;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #e5e7eb;
+            box-shadow: 0 0 24px rgba(0,0,0,.05);
+        }
+
+            #sidebar h2 {
+                padding: 12px 14px;
+                background: #f9fafb;
+                font-size: 14px;
+                color: #6b7280;
+                text-transform: uppercase;
+                letter-spacing: .5px;
+            }
+
+        .chat-list {
+            flex: 1;
+            padding: 8px;
+            overflow-y:auto;
+        }
+
+        .chat-item {
+            background: #ffffff;
+            margin: 6px 0;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 13px;
+            transition: box-shadow .15s ease, transform .05s ease;
+        }
+
+            .chat-item:hover {
+                box-shadow: 0 6px 14px rgba(17,24,39,.06);
+                transform: translateY(-1px);
+            }
+
+            .chat-item span {
+                flex: 1;
+                color: #111827;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .claim-btn, .end-btn {
+            background: #10b981;
+            border: none;
+            color: #fff;
+            padding: 6px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+
+            .claim-btn:hover {
+                background: #219150
+            }
+
+        .end-btn { background: #ef4444; }
+
+            .end-btn:hover {
+                background: #992d22
+            }
+
+        /* Main panel */
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f6f7f9;
+        }
+
+        /* Üst başlık */
+        #chatHeaderBar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        #activeTitle { font-weight: 600; color: #111827; }
+
+        #chatWindow {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f6f7f9;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .msg {
+            max-width: 72%;
+            margin: 2px 0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            line-height: 1.45;
+            background: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,.06);
+        }
+        .from-user { background: #e9f5ff; align-self: flex-start; }
+        .from-support { background: #eafaf3; align-self: flex-end; }
+        .sys { color: #6b7280; font-style: italic; align-self: center; background: transparent; box-shadow: none; }
+
+        #chatInput {
+            display: flex;
+            padding: 12px;
+            gap: 8px;
+            background: #ffffff;
+            border-top: 1px solid #e5e7eb;
+        }
+
+            #chatInput input {
+                flex: 1;
+                padding: 10px 12px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-size: 14px;
+            }
+
+            #chatInput button {
+                padding: 10px 14px;
+                background: #2563eb;
+                border: none;
+                border-radius: 8px;
+                color: #fff;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+                #chatInput button:hover {
+                    background: #1f6a98
+                }
+
+        .active { outline: 2px solid #2563eb; }
+    </style>
+</head>
+<body>
+
+    <div id="sidebar">
+        <h2>Bekleyen Sohbetler</h2>
+        <div id="pendingList" class="chat-list"></div>
+
+        <h2>Benim Sohbetlerim</h2>
+        <div id="myList" class="chat-list"></div>
+    </div>
+
+        <div id="main">
+        <div id="chatHeaderBar">
+            <div id="activeTitle">Sohbet seçilmedi</div>
+            <div style="color:#6b7280;font-size:12px;" id="connState">Bağlanıyor...</div>
+        </div>
+        <div id="chatWindow"></div>
+        <div id="chatInput">
+            <input type="text" id="adminMessage" placeholder="Mesajınızı yazın..." />
+            <button id="adminSendBtn">Gönder</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        // Authentication kontrolü
+        if (!sessionStorage.getItem('adminAuth')) {
+            window.location.href = '/admin_login.html';
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const pendingList = document.getElementById('pendingList');
+            const myList = document.getElementById('myList');
+            const chatWindow = document.getElementById('chatWindow');
+            const activeTitle = document.getElementById('activeTitle');
+            const connState = document.getElementById('connState');
+            const adminInput = document.getElementById('adminMessage');
+            const adminSendBtn = document.getElementById('adminSendBtn');
+
+            let connection, activeChatId = null, subscribedChatId = null;
+
+            function addWindowMessage(sender, text) {
+                const d = document.createElement('div');
+                const isSupport = sender === 'Destek';
+                d.className = 'msg ' + (sender === 'Sistem' ? 'sys' : (isSupport ? 'from-support' : 'from-user'));
+                d.textContent = sender === 'Sistem' ? text : `${sender}: ${text}`;
+                chatWindow.appendChild(d);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }
+            function clearWindow() {
+                chatWindow.innerHTML = "";
+            }
+
+            function renderPending(chats) {
+                pendingList.innerHTML = "";
+                chats.forEach(s => {
+                    const item = document.createElement('div');
+                    item.className = 'chat-item';
+                    const lbl = document.createElement('span');
+                    lbl.textContent = `${s.chatId} (${s.userName})`;
+                    const btn = document.createElement('button');
+                    btn.className = 'claim-btn';
+                    btn.textContent = 'Claim';
+                    btn.onclick = async e => {
+                        e.stopPropagation();
+                        const ok = await connection.invoke('ClaimChat', s.chatId);
+                        if (ok) {
+                            await loadAllLists();
+                            openChat(s.chatId);
+                        }
+                    };
+                    item.append(lbl, btn);
+                    pendingList.appendChild(item);
+                });
+            }
+
+            function renderMy(chats) {
+                myList.innerHTML = "";
+                chats.forEach(s => {
+                    const item = document.createElement('div');
+                    item.className = 'chat-item';
+                    const lbl = document.createElement('span');
+                    lbl.textContent = `${s.chatId} (${s.userName})`;
+                    const endBtn = document.createElement('button');
+                    endBtn.className = 'end-btn';
+                    endBtn.textContent = 'Sohbeti Bitir';
+                    endBtn.onclick = async e => {
+                        e.stopPropagation();
+                        await connection.invoke('EndChat', s.chatId);
+                        await loadAllLists();
+                        if (activeChatId === s.chatId) {
+                            clearWindow();
+                            activeChatId = null;
+                        }
+                    };
+                    item.append(lbl, endBtn);
+                    item.onclick = () => openChat(s.chatId);
+                    if (s.chatId === activeChatId) item.classList.add('active');
+                    myList.appendChild(item);
+                });
+            }
+
+            async function loadAllLists() {
+                const pending = await connection.invoke('GetOpenChats');
+                renderPending(pending);
+                const mine = await connection.invoke('GetMyChats');
+                renderMy(mine);
+            }
+
+            async function openChat(chatId) {
+                if (subscribedChatId && subscribedChatId !== chatId) {
+                    try { await connection.invoke('LeaveChat', subscribedChatId); } catch {}
+                }
+                subscribedChatId = chatId;
+                activeChatId = chatId;
+                activeTitle.textContent = `Aktif Sohbet: ${chatId}`;
+                clearWindow();
+                try { await connection.invoke('JoinChat', chatId); } catch {}
+                const history = await connection.invoke('GetChatHistory', chatId);
+                history.forEach(m => addWindowMessage(m.sender, m.content));
+                renderMy(await connection.invoke('GetMyChats'));
+            }
+
+            async function sendAdmin() {
+                if (!activeChatId) return;
+                const txt = adminInput.value.trim();
+                if (!txt) return;
+                await connection.invoke('SendMessage', activeChatId, 'Destek', txt);
+                adminInput.value = "";
+            }
+
+            async function init() {
+                connection = new signalR.HubConnectionBuilder()
+                    .withUrl('/chatHub')
+                    .withAutomaticReconnect({
+                        nextRetryDelayInMilliseconds: () => 3000
+                    })
+                    .build();
+
+                connection.on('ReceiveMessage', (cid, sender, content) => {
+                    if (cid === activeChatId) addWindowMessage(sender, content);
+                });
+                connection.on('NewChatCreated', loadAllLists);
+                connection.on('ChatEnded', loadAllLists);
+
+                connection.onreconnecting(() => {
+                    console.warn("Bağlantı yeniden kuruluyor...");
+                    addWindowMessage("Sistem", "Bağlantı yeniden kuruluyor...");
+                });
+
+                connection.onreconnected((connectionId) => {
+                    console.log("Bağlantı yeniden kuruldu:", connectionId);
+                    addWindowMessage("Sistem", "Bağlantı yeniden kuruldu.");
+                    loadAllLists();
+                });
+
+                connection.onclose((err) => {
+                    console.error("Bağlantı koptu", err);
+                    addWindowMessage("Sistem", "Bağlantı koptu. Sayfa yenileniyor...");
+                    setTimeout(() => location.reload(), 3000);
+                });
+
+                try {
+                    await connection.start();
+                    connState.textContent = 'Bağlı';
+                    console.log("Admin paneli bağlandı");
+                    await loadAllLists();
+                } catch (err) {
+                    console.error("Bağlantı hatası:", err);
+                    alert("Sunucuya bağlanılamadı. Lütfen sayfayı yenileyin.");
+                }
+            }
+
+            adminSendBtn.addEventListener('click', sendAdmin);
+            adminInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter') { e.preventDefault(); sendAdmin(); }
+            });
+
+            init();
+        });
+    </script>
+</body>
+</html>

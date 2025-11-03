@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatSupport Widget Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box h2 {
+            color: #667eea;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .code-box {
+            background: #282c34;
+            color: #61dafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .success h2 {
+            color: #28a745;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+
+        .warning h2 {
+            color: #856404;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ChatSupport Widget Test Sayfası</h1>
+        
+        <div class="info-box success">
+            <h2>✅ Widget Başarıyla Yüklendi!</h2>
+            <p>Sayfanın sağ alt köşesinde sarı renkte bir chat butonu görmelisiniz. Bu butona tıklayarak canlı destek sistemini test edebilirsiniz.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <div class="feature-title">Gerçek Zamanlı</div>
+                <div class="feature-desc">SignalR ile anlık mesajlaşma</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-title">Otomatik Yeniden Bağlanma</div>
+                <div class="feature-desc">Bağlantı koptuğunda otomatik yeniden bağlanır</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Responsive</div>
+                <div class="feature-desc">Her cihazda mükemmel görünüm</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Özelleştirilebilir</div>
+                <div class="feature-desc">Renk ve konum ayarlanabilir</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>📋 Test Adımları</h2>
+            <ol>
+                <li>Sağ alttaki chat butonuna tıklayın</li>
+                <li>Adınızı girin ve Enter'a basın</li>
+                <li>Bir mesaj yazın ve gönderin</li>
+                <li>Admin paneli açın: <a href="/admin_login.html" target="_blank">Admin Panel</a></li>
+                <li>Admin panelden sohbeti "Claim" edin</li>
+                <li>Admin olarak yanıt verin</li>
+            </ol>
+        </div>
+
+        <div class="info-box warning">
+            <h2>⚙️ Entegrasyon Kodu</h2>
+            <p>Bu widget'ı kendi web sitenize eklemek için aşağıdaki kodu HTML dosyanızın &lt;/body&gt; etiketinden önce ekleyin:</p>
+        </div>
+
+        <div class="code-box">
+&lt;!-- ChatSupport Widget --&gt;<br>
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"&gt;&lt;/script&gt;<br>
+&lt;script <br>
+&nbsp;&nbsp;&nbsp;&nbsp;src="<span style="color: #98c379;">http://YOUR_API_URL/chatsupport-widget.js</span>" <br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-api-url="<span style="color: #98c379;">http://YOUR_API_URL</span>"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-position="<span style="color: #98c379;">bottom-right</span>"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data-color="<span style="color: #98c379;">#ffc107</span>"&gt;<br>
+&lt;/script&gt;
+        </div>
+
+        <div class="info-box">
+            <h2>🔗 Faydalı Linkler</h2>
+            <ul>
+                <li><a href="/admin_login.html" target="_blank">Admin Panel Giriş</a></li>
+                <li><a href="/swagger" target="_blank">API Dökümantasyonu (Swagger)</a></li>
+                <li><a href="/index_user_popup.html" target="_blank">Standalone Chat Test</a></li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/admin_login.html" class="cta-button">Admin Paneli Aç</a>
+            <a href="/swagger" class="cta-button" style="background: #28a745;">API Dökümantasyonu</a>
+        </div>
+
+        <footer>
+            <p>ChatSupport - Canlı Destek Sistemi</p>
+            <p>Detaylı bilgi için <strong>README.md</strong> dosyasına bakın</p>
+        </footer>
+    </div>
+
+    <!-- ChatSupport Widget -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script 
+        src="/chatsupport-widget.js" 
+        data-api-url="http://localhost:5000"
+        data-position="bottom-right"
+        data-color="#ffc107">
+    </script>
+</body>
+</html>
+

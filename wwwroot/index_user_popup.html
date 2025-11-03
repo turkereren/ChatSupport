@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pop-Up Sohbet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif
+        }
+
+        #chatPanel {
+            position: fixed;
+            right: 24px;
+            bottom: 84px;
+            width: 420px; /* daha geniş görünüm */
+            max-height: 640px; /* daha yüksek görünüm */
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 1001;
+        }
+
+        #chatHeader {
+            background: linear-gradient(135deg,#fdd835,#ffc107);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer
+        }
+
+        #gameBanner {
+            padding: 0;
+            border-bottom: 1px solid #ddd;
+            height: 180px; /* daha büyük banner */
+            overflow: hidden;
+        }
+
+            #gameBanner img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* görseli alanın tamamına kırpmadan sığdır */
+                border-radius: 0;
+            }
+
+        #messageList {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            background: #fafafa;
+            font-size: 14px;
+        }
+
+        .chat-message {
+            margin: 6px 0;
+            padding: 8px;
+            background: #eee;
+            border-radius: 4px;
+        }
+
+        #chatFooter {
+            padding: 12px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #fff;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        #username, #newMessage {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+            #username:disabled {
+                background: #f3f3f3
+            }
+
+            #newMessage:disabled {
+                background: #f9f9f9
+            }
+
+        #sendBtn {
+            align-self: flex-end;
+            padding: 10px 16px;
+            background: #ffc107;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            #sendBtn:disabled {
+                background: #ffd966;
+                cursor: not-allowed;
+            }
+    </style>
+</head>
+<body>
+    <div id="chatPanel">
+        <div id="chatHeader">
+            <span>Sohbet</span>
+            <button class="close-btn" id="closeChatBtn">✕</button>
+        </div>
+
+        <!-- 1) Oyun kampanya afişi -->
+        <div id="gameBanner">
+            <img src="/images/banner.png" alt="Oyun Kampanyaları" />
+        </div>
+
+        <div id="messageList"></div>
+
+        <div id="chatFooter">
+            <input type="text" id="username" placeholder="Adınızı girin ve Enter’a basın" />
+            <input type="text" id="newMessage" placeholder="Mesajınızı yazın..." disabled />
+            <button id="sendBtn" disabled>Gönder</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const chatPanel = document.getElementById('chatPanel');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const messageList = document.getElementById('messageList');
+            const usernameInput = document.getElementById('username');
+            const newMessageInput = document.getElementById('newMessage');
+            const sendBtn = document.getElementById('sendBtn');
+
+            let connection, chatId, isStarted = false;
+
+            function addMessage(sender, text) {
+                const div = document.createElement('div');
+                div.className = 'chat-message';
+                div.textContent = `${sender}: ${text}`;
+                messageList.appendChild(div);
+                messageList.scrollTop = messageList.scrollHeight;
+            }
+
+            async function initConnection() {
+                connection = new signalR.HubConnectionBuilder()
+                    .withUrl("/chatHub")
+                    .withAutomaticReconnect({
+                        nextRetryDelayInMilliseconds: () => 5000
+                    })
+                    .build();
+
+                connection.on("ReceiveMessage", (cid, sender, content) => {
+                    if (cid === chatId) addMessage(sender, content);
+                });
+
+                connection.onreconnecting((err) => {
+                    addMessage("Sistem", "Bağlantı yeniden kuruluyor...");
+                    console.warn("Yeniden bağlanıyor...", err);
+                });
+
+                connection.onreconnected((connectionId) => {
+                    addMessage("Sistem", "Bağlantı yeniden kuruldu.");
+                    console.log("Bağlantı yeniden kuruldu:", connectionId);
+                });
+
+                connection.onclose((err) => {
+                    addMessage("Sistem", "Bağlantı koptu. Lütfen sayfayı yenileyin.");
+                    console.error("Bağlantı kapandı", err);
+                });
+
+                try {
+                    await connection.start();
+                    console.log("SignalR bağlantısı kuruldu");
+                } catch (err) {
+                    console.error("Bağlantı hatası:", err);
+                    addMessage("Sistem", "Bağlantı kurulamadı. Lütfen sayfayı yenileyin.");
+                }
+            }
+
+            // 2) Panel göster, karşılama + kampanya mesajları
+            initConnection().then(() => {
+                addMessage("Sistem", "Merhaba, size nasıl yardımcı olabiliriz?");
+                addMessage("Sistem", "Kampanyalar: League Of Legends, CS2, Arena Breakout: Infinite, Metin 2");
+                usernameInput.focus();
+            });
+
+            // Kullanıcı adı girilince oturum başlat
+            usernameInput.addEventListener("keydown", async e => {
+                if (e.key === "Enter" && !isStarted) {
+                    e.preventDefault();
+                    const name = usernameInput.value.trim();
+                    if (!name) return alert("Adınızı girin ");
+                    chatId = await connection.invoke("StartChat", name);
+                    isStarted = true;
+                    // kullanıcı adı alanını gizle, sadece mesaj kutusu kalsın
+                    usernameInput.style.display = 'none';
+                    newMessageInput.disabled = false;
+                    sendBtn.disabled = false;
+                    newMessageInput.focus();
+                }
+            });
+
+            sendBtn.addEventListener("click", async () => {
+                const text = newMessageInput.value.trim();
+                if (!text) return;
+                await connection.invoke("SendMessage", chatId, usernameInput.value.trim(), text);
+                newMessageInput.value = "";
+            });
+            newMessageInput.addEventListener("keydown", e => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    sendBtn.click();
+                }
+            });
+
+            closeChatBtn.addEventListener("click", () => {
+                chatPanel.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

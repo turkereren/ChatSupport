@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatSupport - Canlı Destek API'si</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .code-example {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 30px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .code-example .keyword {
+            color: #c678dd;
+        }
+
+        .code-example .string {
+            color: #98c379;
+        }
+
+        .code-example .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .stats {
+            background: #f8f9fa;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>🚀 ChatSupport</h1>
+        <p>Web sitelerine kolayca entegre edilebilir canlı destek sistemi</p>
+        <div class="cta-buttons">
+            <a href="/admin_login.html" class="btn btn-primary">Admin Paneli</a>
+            <a href="/test-widget.html" class="btn btn-secondary">Widget'ı Test Et</a>
+            <a href="/swagger" class="btn btn-secondary">API Dökümantasyonu</a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <h2 class="section-title">Özellikler</h2>
+        <p class="section-subtitle">Modern ve kullanıcı dostu canlı destek çözümü</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Gerçek Zamanlı</h3>
+                <p>SignalR ile anlık mesajlaşma. Gecikme yok, hızlı yanıt.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Otomatik Yeniden Bağlanma</h3>
+                <p>Bağlantı koptuğunda otomatik olarak yeniden bağlanır.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>CORS Desteği</h3>
+                <p>Farklı domainlerden erişim için tam CORS desteği.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Özelleştirilebilir</h3>
+                <p>Renk, konum ve stil ayarlarını istediğiniz gibi değiştirin.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Responsive Tasarım</h3>
+                <p>Masaüstü, tablet ve mobil cihazlarda mükemmel görünüm.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Güvenli</h3>
+                <p>Admin paneli authentication ve güvenli API endpoints.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>REST API</h3>
+                <p>SignalR'a ek olarak kapsamlı REST API desteği.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🗄️</div>
+                <h3>MySQL Database</h3>
+                <p>Tüm sohbet ve mesaj kayıtları güvenle saklanır.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Kapsamlı Loglama</h3>
+                <p>Tüm işlemler ve hatalar detaylı şekilde loglanır.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Section -->
+    <div class="container">
+        <h2 class="section-title">Entegrasyon</h2>
+        <p class="section-subtitle">Tek satır kod ile web sitenize ekleyin</p>
+        
+        <div class="code-example">
+<span class="comment">&lt;!-- HTML dosyanızın &lt;/body&gt; etiketinden önce --&gt;</span>
+<span class="keyword">&lt;script</span> <span class="keyword">src=</span><span class="string">"https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"</span><span class="keyword">&gt;&lt;/script&gt;</span>
+<span class="keyword">&lt;script</span> 
+    <span class="keyword">src=</span><span class="string">"http://YOUR_API_URL/chatsupport-widget.js"</span> 
+    <span class="keyword">data-api-url=</span><span class="string">"http://YOUR_API_URL"</span>
+    <span class="keyword">data-position=</span><span class="string">"bottom-right"</span>
+    <span class="keyword">data-color=</span><span class="string">"#ffc107"</span><span class="keyword">&gt;</span>
+<span class="keyword">&lt;/script&gt;</span>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <h2 class="section-title">API'nizin İstatistikleri</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Sınırsız Sohbet</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">&lt; 100ms</div>
+                <div class="stat-label">Mesaj Gecikmesi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Açık Kaynak</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Kesintisiz Hizmet</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Links Section -->
+    <div class="container">
+        <h2 class="section-title">Hızlı Erişim</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">👨‍💼</div>
+                <h3>Admin Paneli</h3>
+                <p>Tüm sohbetleri yönetin ve müşterilerinize anında yanıt verin.</p>
+                <a href="/admin_login.html" class="btn btn-primary" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 14px;">Panele Git</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3>Widget Test</h3>
+                <p>Chat widget'ını canlı olarak test edin ve nasıl çalıştığını görün.</p>
+                <a href="/test-widget.html" class="btn btn-primary" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 14px;">Test Et</a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>API Dökümantasyonu</h3>
+                <p>Swagger UI ile tüm API endpoint'lerini keşfedin ve test edin.</p>
+                <a href="/swagger" class="btn btn-primary" style="margin-top: 15px; display: inline-block; padding: 10px 20px; font-size: 14px;">Swagger Aç</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/admin_login.html">Admin Panel</a>
+            <a href="/test-widget.html">Widget Test</a>
+            <a href="/swagger">API Docs</a>
+            <a href="/index_user_popup.html">User Chat</a>
+        </div>
+        <p>&copy; 2025 ChatSupport - Canlı Destek API'si</p>
+        <p style="margin-top: 10px; opacity: 0.7; font-size: 14px;">
+            Detaylı bilgi için <strong>README.md</strong> ve <strong>QUICKSTART.md</strong> dosyalarına bakın
+        </p>
+    </footer>
+</body>
+</html>
+
